@@ -12,6 +12,7 @@ public class TOTAL_auction {
 
 		System.out.println("테스트 중입니다");
 		System.out.println("으아아악");
+		System.out.println("다시테스트");
 
 	}
 
