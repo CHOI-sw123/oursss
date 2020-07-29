@@ -11,8 +11,8 @@ public class TOTAL_auction {
 		DAO_auction dao = new DAO_auction();
 
 		System.out.println("테스트 중입니다");
-		System.out.println("으아아악");
-		System.out.println("다시테스트");
+		System.out.println("하....");
+		System.out.println("꺄악");
 
 	}
 
