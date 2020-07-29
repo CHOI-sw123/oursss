@@ -18,19 +18,15 @@ public class DAO_members {
 	// 데이터베이스와 연결하는 메소드 생성
 	private void getConnection() {
 		
-		String id = "";
-		String pw = "";
-		String name = "";
-		String university_name = "";
-		String department = "";
-		int point = 0;
-		int reliability = 0;
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "ours";
+		String password = "ours";
 		
 
 		try {
 			// 1. 드라이버 동적로딩!
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(id, pw, name, university_name, department, point, reliability);
+			conn = DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -53,113 +49,134 @@ public class DAO_members {
 		}
 
 	}
-	public VO login(VO vo) {
-		VO result = null;
-		try {
-			getConnection();
-			String sql = "select name,age from members where id =? and pw = ?";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getId());
-			psmt.setString(2, vo.getPw());
-			rs = psmt.executeQuery();
-			while (rs.next()) {
-				String name = rs.getString(1);
-				int age = rs.getInt(2);
-				result =new VO(name, age);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return result;
-	}
-
-	// 회원가입 메소드
-	public int insert(VO vo) {
-		int cnt = 0;
-		try {
-			getConnection();
-			String sql = "insert into members values(?,?,?,?)";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getId());
-			psmt.setString(2, vo.getPw());
-			psmt.setString(3, vo.getName());
-			psmt.setInt(4, vo.getAge());
-			cnt = psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-
-		return cnt;
-	}
-
+	
 	public int update(String id, String pw, String newId) {
-		int cnt = 0;
+	int cnt = 0;
 
-		try {
-			getConnection();
-			String sql = "update members set id = ? where id =? and pw = ?";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, newId);
-			psmt.setString(2, id);
-			psmt.setString(3, pw);
+	try {
+		getConnection();
+		String sql = "update members set id = ? where id =? and pw = ?";
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, newId);
+		psmt.setString(2, id);
+		psmt.setString(3, pw);
 
-			cnt = psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return cnt;
+		cnt = psmt.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close();
 	}
-
-	public int delete(VO vo) {
-		int cnt = 0;
-
-		try {
-			getConnection();
-			String sql = "DELETE FROM MEMBERS WHERE id = ? and pw = ?";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getId());
-			psmt.setString(2, vo.getPw());
-
-			cnt = psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return cnt;
-	}
-
-	public ArrayList<VO> allSelect() {
-
-		ArrayList<VO> list = new ArrayList<VO>();
-		
-		try {
-			getConnection();
-			String sql = "SELECT * FROM MEMBERS";
-			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery();
-			int num = 1;
-			while (rs.next()) {
-				String id = rs.getString(1);
-				String pw = rs.getString(2);
-				String name = rs.getString(3);
-				int age = rs.getInt(4);
-				VO vo = new VO(id, pw, name, age);
-				list.add(vo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return list;
-	}
+	return cnt;
+}
+	
+//	public VO login(VO vo) {
+//		VO result = null;
+//		try {
+//			getConnection();
+//			String sql = "select name,age from members where id =? and pw = ?";
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, vo.getId());
+//			psmt.setString(2, vo.getPw());
+//			rs = psmt.executeQuery();
+//			while (rs.next()) {
+//				String name = rs.getString(1);
+//				int age = rs.getInt(2);
+//				result =new VO(name, age);
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//		return result;
+//	}
+//
+//	// 회원가입 메소드
+//	public int insert(VO vo) {
+//		int cnt = 0;
+//		try {
+//			getConnection();
+//			String sql = "insert into members values(?,?,?,?)";
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, vo.getId());
+//			psmt.setString(2, vo.getPw());
+//			psmt.setString(3, vo.getName());
+//			psmt.setInt(4, vo.getAge());
+//			cnt = psmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//
+//		return cnt;
+//	}
+//
+//	public int update(String id, String pw, String newId) {
+//		int cnt = 0;
+//
+//		try {
+//			getConnection();
+//			String sql = "update members set id = ? where id =? and pw = ?";
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, newId);
+//			psmt.setString(2, id);
+//			psmt.setString(3, pw);
+//
+//			cnt = psmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//		return cnt;
+//	}
+//
+//	public int delete(VO vo) {
+//		int cnt = 0;
+//
+//		try {
+//			getConnection();
+//			String sql = "DELETE FROM MEMBERS WHERE id = ? and pw = ?";
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, vo.getId());
+//			psmt.setString(2, vo.getPw());
+//
+//			cnt = psmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//		return cnt;
+//	}
+//
+//	public ArrayList<VO> allSelect() {
+//
+//		ArrayList<VO> list = new ArrayList<VO>();
+//		
+//		try {
+//			getConnection();
+//			String sql = "SELECT * FROM MEMBERS";
+//			psmt = conn.prepareStatement(sql);
+//			rs = psmt.executeQuery();
+//			int num = 1;
+//			while (rs.next()) {
+//				String id = rs.getString(1);
+//				String pw = rs.getString(2);
+//				String name = rs.getString(3);
+//				int age = rs.getInt(4);
+//				VO vo = new VO(id, pw, name, age);
+//				list.add(vo);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//		return list;
+//	}
 
 }
