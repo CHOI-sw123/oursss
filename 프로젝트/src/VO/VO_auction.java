@@ -2,7 +2,7 @@ package VO;
 
 import java.sql.Date;
 
-public class auction {
+public class VO_auction {
 
 	private int auction_number;
 	private String id;
@@ -10,7 +10,7 @@ public class auction {
 	private int last_price;
 	private Date auction_term;
 
-	public auction(int auction_number, String id, String bookname, int last_price, Date auction_term) {
+	public VO_auction(int auction_number, String id, String bookname, int last_price, Date auction_term) {
 		this.auction_number = auction_number;
 		this.id = id;
 		this.bookname = bookname;

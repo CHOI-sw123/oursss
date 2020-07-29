@@ -1,31 +1,23 @@
 package VO;
 
-public class members {
+public class VO_members {
 	private String id;
 	private String pw;
 	private String name;
-	private String university;
+	private String university_name;
 	private String department;
 	private int point;
 	private int reliability;
 
-	public members(String id, String pw, String name, String university, String department, int point,
+	public VO_members(String id, String pw, String name, String university_name, String department, int point,
 			int reliability) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
-		this.university = university;
+		this.university_name = university_name;
 		this.department = department;
 		this.point = point;
 		this.reliability = reliability;
-	}
-	
-	public members(String id, String pw, String name, String university, String department) {
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.university = university;
-		this.department = department;
 	}
 
 	public String getId() {
@@ -53,11 +45,11 @@ public class members {
 	}
 
 	public String getUniversity_name() {
-		return university;
+		return university_name;
 	}
 
-	public void setUniversity_name(String university) {
-		this.university = university;
+	public void setUniversity_name(String university_name) {
+		this.university_name = university_name;
 	}
 
 	public String getDepartment() {

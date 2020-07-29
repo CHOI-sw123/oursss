@@ -2,7 +2,7 @@ package VO;
 
 import java.sql.Date;
 
-public class post {
+public class VO_post {
 
 	private int post_number;
 	private String id;
@@ -17,7 +17,7 @@ public class post {
 	private int price;
 	private String condition;
 
-	public post(int post_number, String id, int form, String post_title, int hope_price, String state,
+	public VO_post(int post_number, String id, int form, String post_title, int hope_price, String state,
 			Date date_created, String bookname, String author, String publisher, int price, String condition) {
 		this.post_number = post_number;
 		this.id = id;

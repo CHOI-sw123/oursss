@@ -1,10 +1,10 @@
 package VO;
 
-public class universityies {
+public class VO_universityies {
 
 	private String university;
 
-	public universityies(String university) {
+	public VO_universityies(String university) {
 		this.university = university;
 	}
 

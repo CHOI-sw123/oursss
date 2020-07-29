@@ -10,21 +10,16 @@ import java.util.ArrayList;
 
 public class DAO_members {
 
-	// 필드 --->DAO클래스 전역에 닿을 수 있게 생성
 	private Connection conn = null;
 	private PreparedStatement psmt = null;
 	private ResultSet rs = null;
 
-	// 데이터베이스와 연결하는 메소드 생성
 	private void getConnection() {
-		
+
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "ours";
 		String password = "ours";
-		
-
 		try {
-			// 1. 드라이버 동적로딩!
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException e) {
@@ -47,8 +42,8 @@ public class DAO_members {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
+
 	
 	public int update(String id, String pw, String newId) {
 	int cnt = 0;

@@ -2,14 +2,14 @@ package VO;
 
 import java.sql.Date;
 
-public class rental {
+public class VO_rental {
 
 	private int rental_number;
 	private String id;
 	private String bookname;
 	private Date rental_term;
 
-	public rental(int rental_number, String id, String bookname, Date rental_term) {
+	public VO_rental(int rental_number, String id, String bookname, Date rental_term) {
 		this.rental_number = rental_number;
 		this.id = id;
 		this.bookname = bookname;
