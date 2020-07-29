@@ -10,7 +10,6 @@ public class TOTAL_auction {
 		Scanner sc = new Scanner(System.in);
 		DAO_auction dao = new DAO_auction();
 
-		System.out.println("테스트 중입니다");
 		System.out.println("하....");
 
 	}
