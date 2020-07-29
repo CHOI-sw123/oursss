@@ -13,6 +13,7 @@ public class TOTAL_auction {
 		System.out.println("테스트 중입니다");
 		System.out.println("하....");
 		System.out.println("꺄악");
+		System.out.println("gg");
 
 	}
 
